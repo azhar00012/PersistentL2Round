@@ -1,0 +1,17 @@
+.product-list {
+    .grid-view {
+        .product-image {
+            height: 200px;
+            object-fit: contain;
+        }
+    }
+    .table-view {
+        .product-image {
+            height: 50px;
+            object-fit: contain;
+        }
+        .product-description {
+            max-width: 200px;
+        }
+    }
+}
