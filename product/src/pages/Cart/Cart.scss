@@ -1,0 +1,14 @@
+.cart-items {
+    .cart-item {
+        img {
+            max-height: 150px;
+            object-fit: contain;
+        }
+
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            margin-top: 1rem;
+        }
+    }
+}

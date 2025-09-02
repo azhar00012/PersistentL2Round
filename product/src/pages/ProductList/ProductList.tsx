@@ -1,6 +1,7 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
+import axios from "axios";
 import './ProductList.scss';
+import { useCart } from '../../context/CartContext';
 
 type Product = {
     id: number;
@@ -17,6 +18,7 @@ function ProductList() {
     const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
     const [error, setError] = useState<Error | null>(null);
     const [loading, setLoading] = useState(true);
+    const { addToCart } = useCart();
 
     useEffect(() => {
         const fetchData = async () => {
@@ -71,8 +73,20 @@ function ProductList() {
                                 <div className="card-body d-flex flex-column">
                                     <h5 className="card-title">{product.title}</h5>
                                     <p className="card-text text-truncate">{product.description}</p>
-                                    <div className="mt-auto">
+                                    <div className="mt-auto d-flex justify-content-between align-items-center">
                                         <span className="badge bg-primary">${product.price}</span>
+                                        <button
+                                            className="btn btn-sm btn-success"
+                                            onClick={() => addToCart({
+                                                id: product.id,
+                                                title: product.title,
+                                                price: product.price,
+                                                image: product.image,
+                                                quantity: 1
+                                            })}
+                                        >
+                                            Add to Cart
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -109,6 +123,20 @@ function ProductList() {
                                     <td className="text-truncate product-description">{product.description}</td>
                                     <td>{product.category}</td>
                                     <td>${product.price}</td>
+                                    <td>
+                                        <button
+                                            className="btn btn-sm btn-success"
+                                            onClick={() => addToCart({
+                                                id: product.id,
+                                                title: product.title,
+                                                price: product.price,
+                                                image: product.image,
+                                                quantity: 1
+                                            })}
+                                        >
+                                            Add to Cart
+                                        </button>
+                                    </td>
                                 </tr>
                             ))}
                         </tbody>
